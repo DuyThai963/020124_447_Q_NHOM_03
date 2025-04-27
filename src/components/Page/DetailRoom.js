@@ -9,7 +9,7 @@ function DetailRoom() {
   const fetchDataRoomNew = async () => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/detail-room/${id}`,
+        `http://127.0.0.1:8000/api/create-rental-detail/${id}`,
         {
           headers: {
             Accept: "application/json"
@@ -30,7 +30,42 @@ function DetailRoom() {
       <div>
         <div id="gdlr-header-substitute" />
         <div className="gdlr-page-title-wrapper">
-          <div className="gdlr-page-title-overlay" />
+          <div className="gdlr-page-title-wrapper" style={{ marginTop: "0px", paddingTop: "0px" }}>
+            <div
+              className="gdlr-page-title-container"
+              style={{
+                width: '100%',
+                backgroundColor: 'rgba(34, 34, 34, 0.7)',
+                padding: '60px 20px',
+                textAlign: 'center',
+                color: '#fff',
+              }}
+            >
+              <h1
+                className="gdlr-page-title"
+                style={{
+                  fontSize: '36px',
+                  fontWeight: 'bold',
+                  letterSpacing: '2px',
+                  margin: 0
+                }}
+              >
+                PHÒNG
+              </h1>
+              <span
+                className="gdlr-page-caption"
+                style={{
+                  display: 'block',
+                  fontSize: '16px',
+                  fontStyle: 'italic',
+                  color: '#caa87d',
+                  marginTop: '10px'
+                }}
+              >
+                Superior Room – Two Double Beds
+              </span>
+            </div>
+          </div>
           <div className="gdlr-page-title-container container">
             <h3 className="gdlr-page-title">{listRoom.room_name}</h3>
           </div>
@@ -266,109 +301,85 @@ function DetailRoom() {
                           </div>
                           <br />
                           <br />
-                          <table id="customer">
-                            <tbody>
-                              <tr>
-                                <td>
-                                  <div>
-                                    <i className="fa fa-check-square-o icon-check" />
-                                    <span className="gdlr-head">Giường </span>
-                                    <span className="gdlr-tail">
-                                      1 Giường vua
-                                    </span>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div>
-                                    <i className="fa fa-check-square-o icon-check" />
-                                    <span className="gdlr-head">Tối đa </span>
-                                    <span className="gdlr-tail">3 Người</span>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div>
-                                    <i className="fa fa-check-square-o icon-check" />
-                                    <span className="gdlr-head">
-                                      Phong cảnh{" "}
-                                    </span>
-                                    <span className="gdlr-tail">Biển</span>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div>
-                                    <i className="fa fa-check-square-o icon-check" />
-                                    <span className="gdlr-head">
-                                      Kích thước phòng{" "}
-                                    </span>
-                                    <span className="gdlr-tail">1000 m²</span>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div>
-                                    <i className="fa fa-check-square-o icon-check" />
-                                    <span className="gdlr-head">Wifi </span>
-                                    <span className="gdlr-tail">Có</span>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div>
-                                    <i className="fa fa-check-square-o icon-check" />
-                                    <span className="gdlr-head">
-                                      Phục vụ ăn sáng{" "}
-                                    </span>
-                                    <span className="gdlr-tail">Có</span>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div>
-                                    <i className="fa fa-check-square-o icon-check" />
-                                    <span className="gdlr-head">
-                                      Dịch vụ phòng{" "}
-                                    </span>
-                                    <span className="gdlr-tail">Có</span>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div>
-                                    <i className="fa fa-check-square-o icon-check" />
-                                    <span className="gdlr-head">
-                                      Dịch vụ đón tận nơi{" "}
-                                    </span>
-                                    <span className="gdlr-tail">$20/Lượt</span>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                          <div className="amenities-table">
+                            <table id="customer">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <div>
+                                      <i className="fa fa-check-square-o icon-check" />
+                                      <span className="gdlr-head">Giường </span>
+                                      <span className="gdlr-tail">1 Giường vua</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <i className="fa fa-check-square-o icon-check" />
+                                      <span className="gdlr-head">Tối đa </span>
+                                      <span className="gdlr-tail">3 Người</span>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <div>
+                                      <i className="fa fa-check-square-o icon-check" />
+                                      <span className="gdlr-head">Phong cảnh </span>
+                                      <span className="gdlr-tail">Biển</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <i className="fa fa-check-square-o icon-check" />
+                                      <span className="gdlr-head">Kích thước phòng </span>
+                                      <span className="gdlr-tail">1000 m²</span>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <div>
+                                      <i className="fa fa-check-square-o icon-check" />
+                                      <span className="gdlr-head">Wifi </span>
+                                      <span className="gdlr-tail">Có</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <i className="fa fa-check-square-o icon-check" />
+                                      <span className="gdlr-head">Phục vụ ăn sáng </span>
+                                      <span className="gdlr-tail">Có</span>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <div>
+                                      <i className="fa fa-check-square-o icon-check" />
+                                      <span className="gdlr-head">Dịch vụ phòng </span>
+                                      <span className="gdlr-tail">Có</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <i className="fa fa-check-square-o icon-check" />
+                                      <span className="gdlr-head">Dịch vụ đón tận nơi </span>
+                                      <span className="gdlr-tail">$20/Lượt</span>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
                           <br />
                           <br />
                           <div className="gdlr-room-content">
                             <p>
-                              Tọa lạc ở Hội An, cách Bãi biển Hà My 5 phút đi
-                              bộ, Shilla Monogram Quangnam Danang cung cấp chỗ
-                              nghỉ có hồ bơi ngoài trời, chỗ đậu xe riêng miễn
-                              phí, trung tâm thể dục và khu vườn. Chỗ nghỉ này
-                              có các tiện nghi như nhà hàng, câu lạc bộ trẻ em
-                              và phòng chờ chung, cùng với Wi-Fi miễn phí. Chỗ
-                              nghỉ này có phòng xông hơi khô, nhân viên phục vụ
-                              hoạt động giải trí và dịch vụ phòng.
+                              Hãy để chúng tôi biến kỳ nghỉ của bạn thành một trải nghiệm không thể quên, với những tiện nghi hiện đại và dịch vụ chuyên nghiệp ngay giữa lòng thành phố Đà Nẵng!
                             </p>
                             <p>
-                              Các phòng tại resort được trang bị điều hòa, khu
-                              vực ghế ngồi, TV màn hình phẳng có truyền hình vệ
-                              tinh, két an toàn, phòng tắm riêng, vòi xịt/chậu
-                              rửa vệ sinh, đồ vệ sinh cá nhân miễn phí và máy
-                              sấy tóc. Tất cả các phòng đều được thiết kế có ấm
-                              đun nước, trong đó một số phòng có bếp với tủ lạnh
-                              và lò vi sóng. Tại Shilla Monogram Quangnam
-                              Danang, tất cả các phòng đều có ga trải giường và
-                              khăn tắm.
+                              "Tìm kiếm một nơi nghỉ dưỡng hoàn hảo tại Đà Nẵng? Hãy đến với chúng tôi để tận hưởng sự thư giãn tuyệt đối và khám phá vẻ đẹp văn hóa độc đáo của vùng biển này!"
+                              "Khách sạn của chúng tôi là điểm dừng chân lý tưởng cho những ai yêu thích sự khám phá và muốn trải nghiệm những điều tuyệt vời nhất của Đà Nẵng!
                             </p>
                             <div className="clear" />
                             <div
@@ -492,17 +503,10 @@ function DetailRoom() {
                               </div>
                             </div>
                             <p>
-                              Khách có thể sử dụng dịch vụ văn phòng hoặc thư
-                              giãn tại quầy bar. Thành thạo tiếng Anh, tiếng Hàn
-                              và tiếng Việt, đội ngũ nhân viên luôn túc trực
-                              24/7 tại lễ tân.
+                            Trải nghiệm sự sang trọng và thoải mái bên bờ biển tuyệt đẹp Đà Nẵng, nơi mà mỗi khoảnh khắc đều trở thành kỷ niệm đáng nhớ!
                             </p>
                             <p>
-                              Các điểm tham quan nổi tiếng gần Shilla Monogram
-                              Quangnam Danang bao gồm Bãi tắm Tân Trà, Sân golf
-                              Montgomerie Links và Sân golf Montgomerie Links
-                              Vietnam Golf Club. Sân bay gần nhất là Sân bay
-                              Quốc tế Đà Nẵng, cách resort 16 km.
+                            Trải nghiệm sự sang trọng và thư giãn tuyệt đối bên bờ biển tuyệt đẹp Đà Nẵng, nơi mỗi khoảnh khắc đều được chăm sóc tỉ mỉ để mang đến cho bạn những kỷ niệm khó quên trong cuộc đời!
                             </p>
                           </div>
                         </div>

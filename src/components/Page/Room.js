@@ -1,161 +1,119 @@
-// import { Link } from "react-router-dom";
-
-import axios from "axios";
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 
 function Room() {
-  const navigate = useNavigate();
-  const [listRoom, setListRoom] = useState([]);
-  const fetchDataRoom = async () => {
-    try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/list-room`, {
-        headers: {
-          Accept: "application/json"
-        }
-      });
-      console.log(response.data);
-      setListRoom(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const [data, setData] = useState({ room: [] });
+
   useEffect(() => {
-    fetchDataRoom();
+    fetch("http://localhost:8000/api/list-room")
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json); // Kiểm tra dữ liệu
+        // Kiểm tra định dạng dữ liệu
+        if (Array.isArray(json.room)) {
+          setData({ room: json.room });
+        } else {
+          setData({ room: [] });
+        }
+      })
+      .catch((err) => console.error("Lỗi fetch:", err));
   }, []);
-  const handleDetailRoom = (id) => {
-    navigate(`/room/${id}`);
-  };
+
+  const roomList = (
+    <div className="room-list">
+      {data.room.length === 0 ? (
+        <div>Không có phòng nào để hiển thị.</div>
+      ) : (
+        data.room.map((room) => (
+          <div className="room-card" key={room.id}>
+            <div className="gdlr-item gdlr-room-item gdlr-classic-room">
+              <div className="gdlr-ux gdlr-classic-room-ux">
+                <div className="gdlr-room-thumbnail">
+                <Link to={`/room/${room.id}`}>
+                  <img src={room.image || ""} alt={room.room_name} width={700} height={400} />
+                  </Link>
+                </div>
+                <h3 className="gdlr-room-title">
+                  <a href="#">{room.room_name}</a>
+                </h3>
+                <div className="gdlr-hotel-room-info">
+                  <div className="gdlr-room-info">
+                    <i className="fa fa-check-square-o icon-check" />
+                    <span className="gdlr-tail">1 giường đôi / 2 giường đơn</span>
+                  </div>
+                  <div className="gdlr-room-info">
+                    <i className="fa fa-check-square-o icon-check" />
+                    <span className="gdlr-head">Người tối đa</span>
+                    <span className="gdlr-tail">3</span>
+                  </div>
+                  <div className="gdlr-room-info">
+                    <i className="fa fa-check-square-o icon-check" />
+                    <span className="gdlr-head">View</span>
+                    <span className="gdlr-tail">Thành phố</span>
+                  </div>
+                  <div className="gdlr-room-info">
+                    <i className="fa fa-check-square-o icon-check" />
+                    <span className="gdlr-head">Wifi</span>
+                    <span className="gdlr-tail">Có</span>
+                  </div>
+                  <div className="gdlr-room-price">
+                    <span className="gdlr-head">Giá từ</span>
+                    <span className="gdlr-tail">
+                      {room.price.toLocaleString("vi-VN")} VNĐ / Đêm
+                    </span>
+                  </div>
+                  <div className="clear" />
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+  );
+
   return (
     <div>
-    <div
-      className="gdlr-page-title-wrapper"
-      style={{
-        backgroundImage: 'url(/frontend/anh/bgrTitle.png)',
-        //backgroundSize: 'cover',
-        backgroundSize: '1518px 226px',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        width: '100%',
-        //height: '100vh',
-        position: 'relative',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        
-      }}
-    >
-    <div
-    style={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      //height: '100%',
-      backgroundColor: 'rgba(16, 16, 16, 0.5)',  // Lớp phủ màu nâu mờ
-      zIndex: 0,  // Đảm bảo lớp phủ dưới nội dung văn bản
-    }}
-    />
-      <div className="gdlr-page-title-wrapper">
-        <div className="gdlr-page-title-overlay" />
-        <div className="gdlr-page-title-container container">
-          <h1 className="gdlr-page-title">Phòng</h1>
-          <span className="gdlr-page-caption">Tất cả đều có tại đây</span>
+      <div className="gdlr-page-title-wrapper" style={{ marginTop: "0px", paddingTop: "0px" }}>
+        <div
+          className="gdlr-page-title-container"
+          style={{
+            width: '100%',
+            backgroundColor: 'rgba(34, 34, 34, 0.7)',
+            padding: '60px 20px',
+            textAlign: 'center',
+            color: '#fff',
+          }}
+        >
+          <h1
+            className="gdlr-page-title"
+            style={{
+              fontSize: '36px',
+              fontWeight: 'bold',
+              letterSpacing: '2px',
+              margin: 0
+            }}
+          >
+            PHÒNG
+          </h1>
+          <span
+            className="gdlr-page-caption"
+            style={{
+              display: 'block',
+              fontSize: '16px',
+              fontStyle: 'italic',
+              color: '#caa87d',
+              marginTop: '10px'
+            }}
+          >
+            Tất cả đều có tại đây
+          </span>
         </div>
-      </div>
       </div>
       <div id="gdlr-header-substitute"></div>
-
-      <div className="content-wrapper">
-        <div className="gdlr-content">
-          <div className="with-sidebar-wrapper">
-            <section id="content-section-1">
-              <div className="section-container container">
-                <div
-                  className="room-item-wrapper type-classic"
-                  style={{ marginBottom: "30px" }}
-                >
-                  <div className="room-item-holder ">
-                    <div className="clear" />
-                    {listRoom.map((room, index) => {
-                      console.log(room);
-                      return (
-                        <React.Fragment key={index}>
-                          <div className="four columns" onClick={() => {handleDetailRoom(room.id)}}>
-                            <div className="gdlr-item gdlr-room-item gdlr-classic-room">
-                              <div className="gdlr-ux gdlr-classic-room-ux">
-                                <div className="gdlr-room-thumbnail">
-                                  <img
-                                    src={
-                                      room.room_category.image
-                                        ? room.room_category.image
-                                        : "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg"
-                                    }
-                                    alt=""
-                                    width={700}
-                                    height={400}
-                                  />
-                                </div>
-                                <h3 className="gdlr-room-title">
-                                  {room.room_name} -{" "}
-                                  {room.room_category.room_type}
-                                </h3>
-                                <div className="gdlr-hotel-room-info">
-                                  <div className="gdlr-room-info">
-                                    <i className="fa fa-check-square-o icon-check" />
-                                    <span className="gdlr-head">Giường</span>
-                                    <span className="gdlr-tail">
-                                      1 giường đôi / 2 giường đơn
-                                    </span>
-                                  </div>
-                                  <div className="gdlr-room-info">
-                                    <i className="fa fa-check-square-o icon-check" />
-                                    <span className="gdlr-head">
-                                      Người tối đa
-                                    </span>
-                                    <span className="gdlr-tail">3</span>
-                                  </div>
-                                  <div className="gdlr-room-info">
-                                    <i className="fa fa-check-square-o icon-check" />
-                                    <span className="gdlr-head">View</span>
-                                    <span className="gdlr-tail">Thành phố</span>
-                                  </div>
-                                  <div className="gdlr-room-info">
-                                    <i className="fa fa-check-square-o icon-check" />
-                                    <span className="gdlr-head">Wifi</span>
-                                    <span className="gdlr-tail">Có</span>
-                                  </div>
-                                  <div className="gdlr-room-price">
-                                    <span className="gdlr-head">Giá từ</span>
-                                    <span className="gdlr-tail">
-                                      {room.price.toLocaleString("vi-VN")} VNĐ /
-                                      Đêm
-                                    </span>
-                                  </div>
-                                  <div className="clear" />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          {(index + 1) % 3 === 0 && <div className="clear" />}
-                        </React.Fragment>
-                      );
-                    })}
-                    <div className="clear" />
-                  </div>
-                </div>
-                <div className="clear" />
-              </div>
-            </section>
-          </div>
-          {/* Below Sidebar Section*/}
-        </div>
-        {/* gdlr-content */}
-        <div className="clear" />
-      </div>
+      {roomList}
     </div>
   );
 }
+
 export default Room;

@@ -3,120 +3,88 @@
 function Facility() {
   return (
     <div>
-    <div className="gdlr-page-title-wrapper"
-      style={{
-        backgroundImage: 'url(/frontend/anh/bgrTitle.png)',
-        backgroundSize: '1518px 226px',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        width: '100%',
-        position: 'relative',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-      }}
-    >
-    <div style={{position: 'absolute',top: 0,left: 0,width: '100%',backgroundColor: 'rgba(34, 34, 34, 0.5)',zIndex: 0,}}/>
-      <div className="gdlr-page-title-overlay" />
-      <div className="gdlr-page-title-container container">
-        <h1 className="gdlr-page-title" >
-          Kỳ nghỉ dưỡng giữa thiên nhiên tươi đẹp của Đà Nẵng
-        </h1>
-        <span className="gdlr-page-caption">
-          Đắm mình trong bể bơi thư giãn, thưởng thức một vài ly cocktail nhẹ
-          nhàng với khung cảnh biển xanh bất tận mở ra trước mắt.
-        </span>
-        <span className="gdlr-page-caption">
-          Khởi đầu ngày mới tràn đầy sức sống tại phòng tập gym và tái tạo
-          năng lượng tại khu spa, xông hơi.
-        </span>
-      </div>
+      <div className="gdlr-page-title-wrapper"
+        style={{
+          backgroundImage: 'url(/frontend/anh/bgrTitle.png)',
+          backgroundSize: '1518px 226px',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          width: '100%',
+          position: 'relative',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
+        }}
+      >
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', backgroundColor: 'rgba(34, 34, 34, 0.5)', zIndex: 0, }} />
+        <div className="gdlr-page-title-overlay" />
+        <div className="gdlr-page-title-container container">
+          <h1 className="gdlr-page-title" >
+            Kỳ nghỉ dưỡng giữa thiên nhiên tươi đẹp của Đà Nẵng
+          </h1>
+          <span className="gdlr-page-caption">
+            Đắm mình trong bể bơi thư giãn, thưởng thức một vài ly cocktail nhẹ
+            nhàng với khung cảnh biển xanh bất tận mở ra trước mắt.
+          </span>
+          <span className="gdlr-page-caption">
+            Khởi đầu ngày mới tràn đầy sức sống tại phòng tập gym và tái tạo
+            năng lượng tại khu spa, xông hơi.
+          </span>
+        </div>
       </div>
       {/* is search */}
       <div className="content-wrapper">
         <div className="gdlr-content">
           <div className="with-sidebar-wrapper">
-            <section id="content-section-1">
-              <div className="gdlr-color-wrapper  gdlr-show-all no-skin bg2 pt65 pb25">
-                <div className="container">
-                  <div className="four columns">
-                    <div className="gdlr-ux column-service-ux">
-                      <div className="gdlr-item gdlr-column-service-item gdlr-type-1">
-                        <div className="column-service-icon gdlr-skin-box">
-                          <i className="fa " />
-                        </div>
-                        <div className="column-service-content-wrapper">
-                          <h3 className="column-service-title">
-                            Vườn trị liệu{" "}
-                          </h3>
-                          <div className="column-service-divider" />
-                          <div className="column-service-content gdlr-skin-content">
-                            <p>Thoải mái dưới bóng mát của rừng tre.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="four columns">
-                    <div className="gdlr-ux column-service-ux">
-                      <div className="gdlr-item gdlr-column-service-item gdlr-type-1">
-                        <div className="column-service-icon gdlr-skin-box">
-                          <i className="fa " />
-                        </div>
-                        <div className="column-service-content-wrapper">
-                          <h3 className="column-service-title">Cabana</h3>
-                          <div className="column-service-divider" />
-                          <div className="column-service-content gdlr-skin-content">
-                            <p>Khoảnh khắc ấm cúng bên cạnh người thân yêu.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="four columns">
-                    <div className="gdlr-ux column-service-ux">
-                      <div className="gdlr-item gdlr-column-service-item gdlr-type-1">
-                        <div className="column-service-icon gdlr-skin-box">
-                          <i className="fa " />
-                        </div>
-                        <div className="column-service-content-wrapper">
-                          <h3 className="column-service-title">Phòng họp</h3>
-                          <div className="column-service-divider" />
-                          <div className="column-service-content gdlr-skin-content">
-                            <p>
-                              Đẳng cấp, sang trọng cho tổ chức họp và sự kiện.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="clear" />
+            <section style={{ background: "#000", padding: "50px 0" }}>
+              <div className="container" style={{ display: "flex", justifyContent: "space-between" }}>
+                {/* Cột 1 */}
+                <div className="facility-box" style={{ width: "30%", color: "#fff",marginRight:"100px" }}>
+                  <h3 style={{ textTransform: "uppercase" }}>Vườn trị liệu</h3>
+                  <hr style={{ borderColor: "#fff", width: "50px", marginLeft: 0 }} />
+                  <p>Thoải mái dưới bóng mát của rừng tre.</p>
+                </div>
+
+                {/* Cột 2 */}
+                <div className="facility-box" style={{ width: "32%", color: "#fff" }}>
+                  <h3 style={{ textTransform: "uppercase" }}>Cabana</h3>
+                  <hr style={{ borderColor: "#fff", width: "50px", marginLeft: 0 }} />
+                  <p>Khoảnh khắc ấm cúng bên cạnh người thân yêu.</p>
+                  
+                </div>
+
+                {/* Cột 3 */}
+                <div className="facility-box" style={{ width: "30%", color: "#fff" }}>
+                  <h3 style={{ textTransform: "uppercase" }}>Phòng họp</h3>
+                  <hr style={{ borderColor: "#fff", width: "50px", marginLeft: 0 }} />
+                  <p>Đẳng cấp, sang trọng cho tổ chức họp và sự kiện.</p>
+                
                 </div>
               </div>
-              <div className="clear" />
             </section>
-            <section id="content-section-2">
+
+            <section id="content-section-2" style={{ marginTop: "0px", paddingTop: "0px" }}>
               <div
                 className="gdlr-parallax-wrapper gdlr-background-image gdlr-show-all gdlr-skin-dark-skin"
                 id="gdlr-parallax-wrapper-1"
                 data-bgspeed="0.2"
                 style={{
-                  backgroundImage: 'url("frontend\anhcsvc.png")',
-                  paddingTop: "90px",
-                  paddingBottom: "50px"
+                  backgroundImage: 'url("frontend/anhcsvc.png")',
+                  paddingTop: "0px",    
+                  paddingBottom: "0px"   
                 }}
               >
                 <div>
-                  <img src="frontend\anh\csvc.png" />
+                  <img src="frontend/anh/csvc.png" style={{ width: "100%" }} />
                 </div>
                 <div className="clear" />
               </div>
             </section>
+
           </div>
           <div className="clear" />
-          <section id="content-section-3">
+          <section id="content-section-3" style={{ marginTop: "0px", paddingTop: "0px" }}>
             <div className="gdlr-color-wrapper  gdlr-show-all no-skin pt115 pb65 bgf4">
               <div className="container">
                 <div className="two-fifth columns">
@@ -189,7 +157,7 @@ function Facility() {
             </div>
             <div className="clear" />
           </section>
-          <section id="content-section-4">
+          <section id="content-section-4" style={{ marginTop: "0px", paddingTop: "0px" }}>
             <div
               className="gdlr-color-wrapper  gdlr-show-all gdlr-skin-dark-skin"
               style={{

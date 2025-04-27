@@ -4,24 +4,24 @@ function Header() {
   return (
     <header id="header">
       <div className="gdlr-header-inner">
-        <div className="gdlr-header-container container">
-          <div className="gdlr-logo">
-            <div className="gdlr-logo-inner">
-              <img src="frontend\anh\logo.png" alt="" />
+        <div className="gdlr-header-container container" style={{paddingTop:'0px',paddingBottom:'10px'}}>
+          <div className="gdlr-logo" style={{marginBottom:'0px'}} >
+            <div className="gdlr-logo-inner" >
+              <img src="frontend\anh\logo.png" alt="" style={{width:'300px',height:'85px'}} />
             </div>
           </div>
           {/* navigation */}
-          <div className="gdlr-navigation-wrapper">
+          <div className="gdlr-navigation-wrapper" style={{marginBottom:'0px' , marginTop:'25px'}}>
             <nav
               className="gdlr-navigation"
               id="gdlr-main-navigation"
               role="navigation"
             >
               <ul id="menu-main-menu-1" className="sf-menu gdlr-main-menu">
-                <li className="menu-item current-menu-item menu-item current-menu-item  gdlr-normal-menu">
+                <li className="menu-item current-menu-item menu-item current-menu-item  gdlr-normal-menu" style={{marginLeft:'30px'}}>
                   <Link to="/">Trang chủ</Link>
                 </li>
-                <li className="menu-item menu-item-has-childrenmenu-item menu-item-has-children gdlr-normal-menu">
+                <li className="menu-item menu-item-has-childrenmenu-item menu-item-has-children gdlr-normal-menu" style={{textAlign:'right'}}>
                   <Link to="/facility">Cơ sở vật chất</Link>
                 </li>
                 <li className="menu-item menu-item-has-childrenmenu-item menu-item-has-children gdlr-normal-menu">

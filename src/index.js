@@ -13,6 +13,8 @@ import Facility from "./components/Page/Facility";
 import DetailRoom from "./components/Page/DetailRoom";
 import SignUp from "./components/Page/Signup";
 import Login from "./components/Page/Login";
+import DetailBlog from "./components/Page/DetailBlog";
+import ChooseRoom from "./components/Page/ChooseRoom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -25,10 +27,13 @@ root.render(
           <Route path="/room" element={<Room />} />
           <Route path="/room/:id" element={<DetailRoom />} />
           <Route path="/booking" element={<Booking />} />
+          <Route path="/chooseroom" element={<ChooseRoom />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/product" element={<Product />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/blog/:id" element={<DetailBlog />} />
+          
 
         </Routes>
       </App>
