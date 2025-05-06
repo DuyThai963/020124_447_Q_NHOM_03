@@ -2,18 +2,27 @@ import React, { useState, useEffect } from 'react';
 import {  useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import "../Style/booking.css";
+import useRoomStore from '../../store/useRoomStore';
+import moment from 'moment'
+import tw from 'twin.macro';
+
 function Booking() {
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [roomNumber, setRoomNumber] = useState(1);
   const [adultNumber, setAdultNumber] = useState(2);
   const [childrenNumber, setChildrenNumber] = useState(0);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const monthNames = ["Tháng Một", "Tháng Hai", "Tháng Ba", "Tháng Tư", "Tháng Năm", "Tháng Sáu", "Tháng Bảy", "Tháng Tám", "Tháng Chín", "Tháng Mười", "Tháng Mười Một", "Tháng Mười Hai"];
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [selectedDay, setSelectedDay] = useState(null);
+  const { rooms, fetchRooms } = useRoomStore();
+
+  const Button = tw.button`bg-yellow-500 text-black px-6 py-2 rounded hover:bg-blue-600`;
+
 
   const handleDateChange = (date, field) => {
     if (field === 'checkIn') {
@@ -74,31 +83,21 @@ function Booking() {
   };
 
   const handleBooking = async (e) => {
-    e.preventDefault();  // Ngừng hành động mặc định để không reload trang
+    e.preventDefault();
     const bookingData = {
       quantity: roomNumber,
-      IssueDate: checkInDate ? checkInDate.toISOString().split('T')[0] : '',
-      DueDate: checkOutDate ? checkOutDate.toISOString().split('T')[0] : '',
+      IssueDate: moment(checkInDate),
+      DueDate: moment(checkOutDate),
       data: 1, 
       adult: adultNumber,
       children: childrenNumber,
       roomType: 'Doi',
     };
-  
+    console.log({ bookingData })
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/choose-room', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bookingData)  
-      });
-  
-      if (response.ok) {
-        navigate('/chooseRoom');
-      } else {
-        console.error('Lỗi từ server');
-      }
+      const response = await fetchRooms(bookingData)
+      console.log({ response })
+      navigate('/chooseRoom');
     } catch (error) {
       console.error('Lỗi kết nối', error);
     }
@@ -178,7 +177,7 @@ function Booking() {
           top: 0,
           left: 0,
           width: '100%',
-          backgroundColor: 'rgba(16, 16, 16, 0.5)', // Lớp phủ màu nâu mờ
+          backgroundColor: 'rgba(16, 16, 16, 0.5)',
           zIndex: 0,
         }} />
         <div className="gdlr-page-title-overlay" />
@@ -204,21 +203,22 @@ function Booking() {
                             <div className="with-sidebar-left twelve columns">
                               <div className="with-sidebar-content twelve columns">
                                 <div className="gdlr-item gdlr-item-start-content" id="gdlr-single-booking-content" data-ajax="https://demo.goodlayers.com/hotelmaster/wp-admin/admin-ajax.php">
-                                <form className="gdlr-reservation-bar" onSubmit={handleBooking} data-action="gdlr_hotel_booking">
-                                <div className="gdlr-reservation-bar-title">Đặt phòng của bạn</div>
-                                    <div className="gdlr-reservation-bar-summary-form" />
-                                    <div className="gdlr-reservation-bar-room-form" />
+                                  <form className="gdlr-reservation-bar" onSubmit={handleBooking}
+                                        data-action="gdlr_hotel_booking">
+                                    <div className="gdlr-reservation-bar-title">Đặt phòng của bạn</div>
+                                    <div className="gdlr-reservation-bar-summary-form"/>
+                                    <div className="gdlr-reservation-bar-room-form"/>
                                     <div className="gdlr-reservation-bar-date-form">
                                       <div className="gdlr-reservation-field gdlr-resv-datepicker">
                                         <span className="gdlr-reservation-field-title">Thời gian vào</span>
                                         <div className="gdlr-datepicker-wrapper">
                                           <DatePicker
-                                            selected={checkInDate}
-                                            onChange={(date) => handleDateChange(date, 'checkIn')}
-                                            placeholderText="Chọn ngày"
-                                            dateFormat="dd/MM/yyyy"
-                                            className="gdlr-datepicker"
-                                            minDate={new Date()}
+                                              selected={checkInDate}
+                                              onChange={(date) => handleDateChange(date, 'checkIn')}
+                                              placeholderText="Chọn ngày"
+                                              dateFormat="dd/MM/yyyy"
+                                              className="gdlr-datepicker"
+                                              minDate={new Date()}
                                           />
                                         </div>
                                       </div>
@@ -227,31 +227,38 @@ function Booking() {
                                         <div className="gdlr-combobox-wrapper">
                                           <select name="gdlr-night" id="gdlr-night">
                                             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
-                                              <option key={num} value={num}>{num}</option>
+                                                <option key={num} value={num}>{num}</option>
                                             ))}
                                           </select>
                                         </div>
                                       </div>
 
-                                      <div className="clear" />
+                                      <div className="clear"/>
                                       <div className="gdlr-reservation-field gdlr-resv-datepicker">
                                         <span className="gdlr-reservation-field-title">Thời gian ra</span>
                                         <div className="gdlr-datepicker-wrapper">
                                           <DatePicker
-                                            selected={checkOutDate}
-                                            onChange={(date) => handleDateChange(date, 'checkOut')}
-                                            placeholderText="Chọn ngày"
-                                            dateFormat="dd/MM/yyyy"
-                                            className="gdlr-datepicker"
-                                            minDate={checkInDate || new Date()}
+                                              selected={checkOutDate}
+                                              onChange={(date) => handleDateChange(date, 'checkOut')}
+                                              placeholderText="Chọn ngày"
+                                              dateFormat="dd/MM/yyyy"
+                                              className="gdlr-datepicker"
+                                              minDate={checkInDate || new Date()}
                                           />
                                         </div>
                                       </div>
 
-                                      <div className="clear" />
-                                      <div className="gdlr-reservation-field gdlr-resv-combobox gdlr-reservation-bar-room-number"><span className="gdlr-reservation-field-title">Số phòng</span>
+                                      <div className="clear"/>
+                                      <div
+                                          className="gdlr-reservation-field gdlr-resv-combobox gdlr-reservation-bar-room-number">
+                                        <span className="gdlr-reservation-field-title">Số phòng</span>
                                         <div className="gdlr-combobox-wrapper">
-                                          <select name="gdlr-room-number" id="gdlr-room-number">
+                                          <select
+                                              name="gdlr-room-number"
+                                              id="gdlr-room-number"
+                                              value={roomNumber}
+                                              onChange={(e) => setRoomNumber(Number(e.target.value))}
+                                          >
                                             <option value={1} selected>1</option>
                                             <option value={2}>2</option>
                                             <option value={3}>3</option>
@@ -264,14 +271,20 @@ function Booking() {
                                           </select>
                                         </div>
                                       </div>
-                                      <div className="clear" />
-                                      <div className="gdlr-reservation-people-amount-wrapper" id="gdlr-reservation-people-amount-wrapper">
+                                      <div className="clear"/>
+                                      <div className="gdlr-reservation-people-amount-wrapper"
+                                           id="gdlr-reservation-people-amount-wrapper">
                                         <div className="gdlr-reservation-people-amount">
-                                          <div className="gdlr-reservation-people-title">Phòng<span>1</span></div>
+                                          <div className="gdlr-reservation-field-title">Phòng 1</div>
                                           <div className="gdlr-reservation-field gdlr-resv-combobox ">
                                             <span className="gdlr-reservation-field-title">Người lớn</span>
                                             <div className="gdlr-combobox-wrapper">
-                                              <select name="gdlr-adult-number[]">
+                                              <select
+                                                  name="gdlr-adult-number[]"
+                                                  className="gdlr-select-option"
+                                                  value={adultNumber}
+                                                  onChange={(e) => setAdultNumber(Number(e.target.value))}
+                                              >
                                                 <option value={1}>1</option>
                                                 <option value={2} selected>2</option>
                                                 <option value={3}>3</option>
@@ -287,7 +300,12 @@ function Booking() {
                                           <div className="gdlr-reservation-field gdlr-resv-combobox ">
                                             <span className="gdlr-reservation-field-title">Trẻ em</span>
                                             <div className="gdlr-combobox-wrapper">
-                                              <select name="gdlr-children-number[]">
+                                              <select
+                                                  name="gdlr-children-number[]"
+                                                  className="gdlr-select-option"
+                                                  value={childrenNumber}
+                                                  onChange={(e) => setChildrenNumber(Number(e.target.value))}
+                                              >
                                                 <option value={0}>0</option>
                                                 <option value={1}>1</option>
                                                 <option value={2}>2</option>
@@ -301,18 +319,20 @@ function Booking() {
                                               </select>
                                             </div>
                                           </div>
-                                          <div className="clear" />
+                                          <div className="clear"/>
                                         </div>
                                       </div>
-                                      <div className="clear" />
+                                      <div className="clear"/>
                                     </div>
-                                    <div className="gdlr-reservation-bar-service-form" id="gdlr-reservation-bar-service-form" />
-                                    <button type="submit">Kiểm tra</button>
+                                    <div className="gdlr-reservation-bar-service-form"
+                                         id="gdlr-reservation-bar-service-form"/>
+                                    <Button className="gdlr-reservation-bar-title">Check</Button>
                                   </form>
+
                                   <div className="gdlr-booking-content">
-                                    <div className="gdlr-booking-process-bar" id="gdlr-booking-process-bar" data-state={2}>
-                                      <div data-process={1} className="gdlr-booking-process">1. Chọn thời gian</div>
-                                      <div data-process={2} className="gdlr-booking-process gdlr-active">2. Chọn phòng</div>
+                                    <div className="gdlr-booking-process-bar" id="gdlr-booking-process-bar" data-state={1}>
+                                      <div data-process={1} className="gdlr-booking-process gdlr-active">1. Chọn thời gian</div>
+                                      <div data-process={2} className="gdlr-booking-process">2. Chọn phòng</div>
                                       <div data-process={3} className="gdlr-booking-process">3. Đặt phòng</div>
                                       <div data-process={4} className="gdlr-booking-process">4. Xác nhận</div>
                                     </div>
@@ -343,30 +363,6 @@ function Booking() {
                                                 </thead>
                                                 <tbody>
                                                   {renderCalendarDays(0)}
-                                                </tbody>
-                                              </table>
-                                            </div>
-
-                                            <div className="ui-datepicker-group ui-datepicker-group-last">
-                                              <div className="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-right">
-                                                <a className="ui-datepicker-next ui-corner-all" onClick={() => changeMonth('next')} title="Next">
-                                                  <span className="ui-icon ui-icon-circle-triangle-e">Next</span>
-                                                </a>
-                                                <div className="ui-datepicker-title">
-                                                  <span className="ui-datepicker-month">{getNextMonthName().split(' ')[0]}</span>
-                                                  <span className="ui-datepicker-year"> {getNextMonthName().split(' ')[1]}</span>
-                                                </div>
-                                              </div>
-                                              <table className="ui-datepicker-calendar">
-                                                <thead>
-                                                  <tr>
-                                                    {['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'].map(day => (
-                                                      <th key={`next-${day}`} scope="col"><span title={day}>{day}</span></th>
-                                                    ))}
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                  {renderCalendarDays(1)}
                                                 </tbody>
                                               </table>
                                             </div>

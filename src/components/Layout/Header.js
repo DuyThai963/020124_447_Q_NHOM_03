@@ -6,7 +6,7 @@ function Header() {
       <div className="gdlr-header-inner">
         <div className="gdlr-header-container container" style={{paddingTop:'0px',paddingBottom:'10px'}}>
           <div className="gdlr-logo" style={{marginBottom:'0px'}} >
-            <div className="gdlr-logo-inner" >
+            <div className="gdlr-logo-inner">
               <img src="frontend\anh\logo.png" alt="" style={{width:'300px',height:'85px'}} />
             </div>
           </div>
@@ -18,10 +18,10 @@ function Header() {
               role="navigation"
             >
               <ul id="menu-main-menu-1" className="sf-menu gdlr-main-menu">
-                <li className="menu-item current-menu-item menu-item current-menu-item  gdlr-normal-menu" style={{marginLeft:'30px'}}>
+                <li className="menu-item current-menu-item menu-item current-menu-item  gdlr-normal-menu" >
                   <Link to="/">Trang chủ</Link>
                 </li>
-                <li className="menu-item menu-item-has-childrenmenu-item menu-item-has-children gdlr-normal-menu" style={{textAlign:'right'}}>
+                <li className="menu-item menu-item-has-childrenmenu-item menu-item-has-children gdlr-normal-menu" >
                   <Link to="/facility">Cơ sở vật chất</Link>
                 </li>
                 <li className="menu-item menu-item-has-childrenmenu-item menu-item-has-children gdlr-normal-menu">

@@ -15,8 +15,10 @@ import SignUp from "./components/Page/Signup";
 import Login from "./components/Page/Login";
 import DetailBlog from "./components/Page/DetailBlog";
 import ChooseRoom from "./components/Page/ChooseRoom";
+import ChooseBooking from "./components/Page/ChooseBooking";
+import Reservation from "./components/Page/Reservation";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document .getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
@@ -28,6 +30,8 @@ root.render(
           <Route path="/room/:id" element={<DetailRoom />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/chooseroom" element={<ChooseRoom />} />
+          <Route path="/choosebooking" element={<ChooseBooking />} />
+          <Route path="/reservation" element={<Reservation />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/product" element={<Product />} />
           <Route path="/sign-up" element={<SignUp />} />

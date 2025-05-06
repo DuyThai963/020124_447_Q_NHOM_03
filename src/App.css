@@ -299,8 +299,6 @@ select {
   display: flex;
   /* Sử dụng flexbox để căn chỉnh */
   justify-content: space-between;
-  /* Căn giữa các phần tử */
-  align-items: center;
   /* Căn chỉnh theo chiều dọc */
   margin-bottom: 15px;
   /* Khoảng cách dưới */
@@ -659,10 +657,10 @@ td {
 /* detailroom */
 /* Đặt container chung cho phần bên trái và phần bên phải */
 .content-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 20px;
+  /*display: flex;*/
+  /*flex-wrap: wrap;*/
+  /*justify-content: space-between;*/
+  /*padding: 20px;*/
   background-color: #1e1e1e;
 }
 
