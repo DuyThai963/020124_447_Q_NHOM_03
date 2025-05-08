@@ -3,7 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-function DetailRoom() {
+function DetailBlog() {
     const { id } = useParams();
     const [listRoom, setListRoom] = useState({});
     const fetchDataRoomNew = async () => {
@@ -44,7 +44,7 @@ function DetailRoom() {
             >
                 <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', backgroundColor: 'rgba(34, 34, 34, 0.5)', zIndex: 0, }} />
                 <div className="gdlr-page-title-overlay" />
-                <div className="gdlr-page-title-container container">
+                <div className="gdlr-page-title-container container" style={{ width: '100%', margin: '0 auto', padding: '0 20px', height: '150px' }}>
                     <h1 className="gdlr-page-title" >
                         Kỳ nghỉ dưỡng giữa thiên nhiên tươi đẹp của Đà Nẵng
                     </h1>
@@ -309,4 +309,4 @@ function DetailRoom() {
         </div>
     );
 }
-export default DetailRoom;
+export default DetailBlog;

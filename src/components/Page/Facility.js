@@ -15,19 +15,21 @@ function Facility() {
           justifyContent: 'center',
           alignItems: 'center',
           textAlign: 'center',
+          padding:'40px',
+          fontFamily: "'Times New Roman', Times, serif"
         }}
       >
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', backgroundColor: 'rgba(34, 34, 34, 0.5)', zIndex: 0, }} />
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', zIndex: 0, }} />
         <div className="gdlr-page-title-overlay" />
         <div className="gdlr-page-title-container container">
-          <h1 className="gdlr-page-title" >
+          <h1 className="gdlr-page-title"style={{ fontFamily: "'Times New Roman', Times, serif" }} >
             Kỳ nghỉ dưỡng giữa thiên nhiên tươi đẹp của Đà Nẵng
           </h1>
-          <span className="gdlr-page-caption">
+          <span className="gdlr-page-caption" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
             Đắm mình trong bể bơi thư giãn, thưởng thức một vài ly cocktail nhẹ
             nhàng với khung cảnh biển xanh bất tận mở ra trước mắt.
           </span>
-          <span className="gdlr-page-caption">
+          <span className="gdlr-page-caption" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
             Khởi đầu ngày mới tràn đầy sức sống tại phòng tập gym và tái tạo
             năng lượng tại khu spa, xông hơi.
           </span>
@@ -37,28 +39,28 @@ function Facility() {
       <div className="content-wrapper">
         <div className="gdlr-content">
           <div className="with-sidebar-wrapper">
-            <section style={{ background: "#000", padding: "50px 0" }}>
+            <section style={{  padding: "50px 0",marginBottom:"100px" }}>
               <div className="container" style={{ display: "flex", justifyContent: "space-between" }}>
                 {/* Cột 1 */}
                 <div className="facility-box" style={{ width: "30%", color: "#fff",marginRight:"100px" }}>
                   <h3 style={{ textTransform: "uppercase" }}>Vườn trị liệu</h3>
                   <hr style={{ borderColor: "#fff", width: "50px", marginLeft: 0 }} />
-                  <p>Thoải mái dưới bóng mát của rừng tre.</p>
+                  <p style={{ fontFamily: "'Times New Roman', Times, serif" }}>Thoải mái dưới bóng mát của rừng tre.</p>
                 </div>
 
                 {/* Cột 2 */}
-                <div className="facility-box" style={{ width: "32%", color: "#fff" }}>
-                  <h3 style={{ textTransform: "uppercase" }}>Cabana</h3>
+                <div className="facility-box" style={{ width: "32%", color: "#fff",marginRight:"5%" }}>
+                  <h3 style={{ textTransform: "uppercase"  }}>Cabana</h3>
                   <hr style={{ borderColor: "#fff", width: "50px", marginLeft: 0 }} />
-                  <p>Khoảnh khắc ấm cúng bên cạnh người thân yêu.</p>
+                  <p style={{ fontFamily: "'Times New Roman', Times, serif" }}>Khoảnh khắc ấm cúng bên cạnh người thân yêu.</p>
                   
                 </div>
 
                 {/* Cột 3 */}
-                <div className="facility-box" style={{ width: "30%", color: "#fff" }}>
+                <div className="facility-box" style={{ width: "30%", color: "#fff",marginRight:"6%" }}>
                   <h3 style={{ textTransform: "uppercase" }}>Phòng họp</h3>
                   <hr style={{ borderColor: "#fff", width: "50px", marginLeft: 0 }} />
-                  <p>Đẳng cấp, sang trọng cho tổ chức họp và sự kiện.</p>
+                  <p style={{ fontFamily: "'Times New Roman', Times, serif" }}>Đẳng cấp, sang trọng cho tổ chức họp và sự kiện.</p>
                 
                 </div>
               </div>

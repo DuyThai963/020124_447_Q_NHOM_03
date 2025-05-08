@@ -372,53 +372,51 @@ body {
   padding: 0;
   margin: 0;
   max-width: 1200px;
+  
 }
 
 .grid-container.hihi {
-  margin: 0 auto;
-  /* căn giữa */
-  width: 50%;
-  gap: 0;
-  max-width: 1200px;
-
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tạo 3 cột */
+  gap: 20px; /* Khoảng cách giữa các khung */
+  margin-top: 20px; /* Khoảng cách từ trên */
+  width: 50%; /* Ảnh sẽ chiếm toàn bộ chiều rộng của thẻ */
+  height: 100%; 
+  margin-top: 20px; /* Khoảng cách từ trên */
+  padding-left: 50px; /* Cách lề trái 20px */
+ 
 }
 
 .card {
-  width: 60%;
-  /* Rộng 100% trong mỗi cột */
-  height: auto;
-  background-color: black;
-  border-radius: 15px;
-  color: white;
-  overflow: hidden;
-  text-align: center;
-  margin-right: 55px;
-  margin-left: 0px;
-  padding: 0;
+  background-color: #fff; /* Màu nền trắng cho thẻ */
+  border-radius: 10px; /* Bo góc cho thẻ */
+  overflow: hidden; /* Ẩn các phần thừa */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng cho thẻ */
+  text-align: center; /* Căn giữa nội dung */
+  margin-left: 5px;
 }
 
+
+
 .card-title {
-  font-size: 24px;
-  /* Giảm kích thước font */
-  margin-top: 16px;
-  /* Giảm khoảng cách trên */
-  padding: 0px 16px;
+  font-size: 18px; /* Kích thước chữ cho tên món */
+  color: #333; /* Màu chữ */
+  margin-top: 10px;
 }
 
 .card-money {
-  color: red;
-  font-size: 16px;
-  /* Giảm kích thước font */
-  margin-top: 8px;
-  margin-bottom: 16px;
-  /* Giảm khoảng cách dưới */
-  padding: 0px 16px;
-  /* Giảm padding bên */
+  font-size: 16px; /* Kích thước chữ cho giá */
+  color: red; /* Màu đỏ cho giá */
+  margin-bottom: 10px;
 }
 
-.desc {
-  margin-bottom: 72px;
+.card .desc {
+  font-size: 14px; /* Kích thước chữ cho phần mô tả */
+  color: #666; /* Màu chữ nhạt hơn cho mô tả */
 }
+/* .desc {
+  margin-bottom: 72px;
+} */
 
 .color1 {
   color: black;
@@ -600,17 +598,32 @@ td {
 
 /* Căn chỉnh hình ảnh */
 .gdlr-blog-thumbnail img {
-  width: 100%; /* Chiều rộng 100% để hình ảnh chiếm toàn bộ container */
-  height: auto; /* Giữ tỷ lệ hình ảnh */
+  width: 50%; /* Chiều rộng 100% để hình ảnh chiếm toàn bộ container */
+  height: 50%; /* Giữ tỷ lệ hình ảnh */
+  margin-left: 30px;
 }
+.blog-info {
+  margin-left: 50px /* Điều chỉnh khoảng cách theo nhu cầu */
+}
+.gdlr-page-title-wrapper {
+  padding: 0;  /* Xóa padding */
+  margin: 0;   /* Xóa margin */
+}
+
 
 /* Căn chỉnh tiêu đề và nội dung */
 .gdlr-blog-title {
   font-size: 24px; /* Kích thước chữ tiêu đề */
+  margin-left: 50px;
+}
+.section-container.container {
+  padding: 0;  /* Xóa padding */
+  margin: 0;   /* Xóa margin */
 }
 
 .gdlr-blog-content {
   line-height: 1.6; /* Khoảng cách giữa các dòng */
+  margin-left: 50px;
 }
 /* Giảm kích thước chữ cho các đoạn văn bản */
 .gdlr-blog-content p {
@@ -618,9 +631,11 @@ td {
   line-height: 1.5; 
   font-family: Merriweather;
   border-color: #3a3a3a;
+  margin-left: 50px;
 }
 .gdlr-blog-thumbnail {
   border: none !important; /* Sử dụng !important để đảm bảo ghi đè các style khác */
+  margin-left: 50px;
 }
 #search-3 .gdl-search-form {
   position: relative;
