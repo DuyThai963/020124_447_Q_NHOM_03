@@ -87,7 +87,7 @@ function Facility() {
           </div>
           <div className="clear" />
           <section id="content-section-3" style={{ marginTop: "0px", paddingTop: "0px" }}>
-            <div className="gdlr-color-wrapper  gdlr-show-all no-skin pt115 pb65 bgf4">
+          <div className="gdlr-color-wrapper gdlr-show-all no-skin pt115 pb65" style={{ background: 'none' }}>
               <div className="container">
                 <div className="two-fifth columns">
                   <div className="gdlr-item gdlr-content-item mb0" />

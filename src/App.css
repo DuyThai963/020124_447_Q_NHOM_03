@@ -367,11 +367,11 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* 3 cột bằng nhau */
-  gap: 0;
-  /* KHÔNG khoảng cách */
-  padding: 0;
-  margin: 0;
-  max-width: 1200px;
+  
+  gap: 40px; /* Giảm khoảng cách giữa các item */
+  padding: 0 50%; /* Thêm padding hai bên nếu cần */
+  margin-top: 20px;
+ 
   
 }
 
@@ -380,20 +380,27 @@ body {
   grid-template-columns: repeat(3, 1fr); /* Tạo 3 cột */
   gap: 20px; /* Khoảng cách giữa các khung */
   margin-top: 20px; /* Khoảng cách từ trên */
-  width: 50%; /* Ảnh sẽ chiếm toàn bộ chiều rộng của thẻ */
-  height: 100%; 
+ margin: 0;
   margin-top: 20px; /* Khoảng cách từ trên */
-  padding-left: 50px; /* Cách lề trái 20px */
+  padding-left: 70px; /* Cách lề trái 20px */
  
 }
 
 .card {
-  background-color: #fff; /* Màu nền trắng cho thẻ */
-  border-radius: 10px; /* Bo góc cho thẻ */
-  overflow: hidden; /* Ẩn các phần thừa */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng cho thẻ */
-  text-align: center; /* Căn giữa nội dung */
-  margin-left: 5px;
+  width: 200px; /* Đặt chiều rộng của thẻ */
+  height: 350px; /* Đặt chiều cao của thẻ */
+  margin: 0; /* Khoảng cách giữa các thẻ */
+  background-color: white; /* Màu nền trắng cho thẻ */
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px; /* Khoảng cách bên trong thẻ */
+  margin: 0;
+  border-radius: 15px; /* Bo tròn góc với bán kính 15px */
+  overflow: hidden; /* Đảm bảo nội dung bên trong cũng được bo tròn theo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm đổ bóng để đẹp hơn */
 }
 
 
@@ -593,7 +600,10 @@ td {
 .gdlr-blog-full {
   max-width: 700px; /* Đặt chiều rộng tối đa cho phần blog */
   margin: 0 auto; /* Căn giữa phần blog */
-  padding: 20px; /* Thêm padding để nội dung không chạm vào viền */
+  padding: 20px;
+  margin-bottom: 0; /* Giảm khoảng cách dưới của phần tử */
+  padding-bottom: 0; 
+  line-height: 1.8/* Thêm padding để nội dung không chạm vào viền */
 }
 
 /* Căn chỉnh hình ảnh */

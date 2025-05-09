@@ -13,6 +13,7 @@ function Booking() {
     const [roomNumber, setRoomNumber] = useState(1);
     const [adultNumber, setAdultNumber] = useState(2);
     const [childrenNumber, setChildrenNumber] = useState(0);
+    const [selectedRoomName, setSelectedRoomName] = useState('');
     const navigate = useNavigate();
     const [roomList, setRoomList] = useState([])
 
@@ -34,6 +35,7 @@ function Booking() {
         // }
         setAdultNumber(paramsFilter?.adult)
         setChildrenNumber(paramsFilter?.children)
+        setSelectedRoomName(paramsFilter?.name || '');
         setRoomNumber(paramsFilter?.quantity)
         setRoomList(rooms.length > 0 ? rooms[0] : [])
     }, [rooms, paramsFilter])
@@ -96,7 +98,7 @@ function Booking() {
         return `${monthNames[nextMonth]} ${nextYear}`;
     };
 
-    const handleBooking = async (e) => {
+    const handleBooking = async (e,room) => {
         e.preventDefault();
         const bookingData = {
             quantity: roomNumber,
@@ -105,6 +107,7 @@ function Booking() {
             data: 1,
             adult: adultNumber,
             children: childrenNumber,
+            name: room.room_name,
             roomType: 'Doi',
         };
         console.log({ bookingData })
@@ -219,7 +222,7 @@ function Booking() {
                                                                           data-action="gdlr_hotel_booking">
                                                                         <div className="gdlr-reservation-bar-title">Đặt phòng của bạn</div>
                                                                         <div className="gdlr-reservation-room gdlr-title-font gdlr-active">
-                                                                            <p className="gdlr-title-font-room">Room 1 :</p>
+                                                                            <p className="gdlr-title-font-room">Room 1 : {selectedRoomName}</p>
                                                                             <span>Adult : { adultNumber } </span>
                                                                             <span>Children : { childrenNumber } </span>
                                                                         </div>
@@ -407,7 +410,7 @@ function Booking() {
                                                                                         Donec sed...
                                                                                     </div>
                                                                                     <div className="area-price">
-                                                                                        <Button className="gdlr-reservation-bar-title"  onClick={handleBooking} >Select this room</Button>
+                                                                                        <Button className="gdlr-reservation-bar-title" onClick={(e) => handleBooking(e, room)} >Select this room</Button>
                                                                                         <div>
                                                                                             <p>Start From</p>
                                                                                             <p>$90.00 / Night</p>

@@ -32,9 +32,15 @@ function Blog() {
                   data.blog.map((blog) => (
                     <article className="gdlr-item gdlr-blog-full" key={blog.id}>
                       <div className="gdlr-ux gdlr-blog-full-ux">
-                        <div className="gdlr-blog-thumbnail">
-                        <Link to={`/blog/${blog.id}`}>
-                            <img src={blog.img} alt="" width={750} height={330} />
+                        <div className="gdlr-blog-thumbnail" style={{ width: '100%', overflow: 'hidden' }}>
+                          <Link to={`/blog/${blog.id}`}>
+                            <img src={blog.img} alt="" style={{
+                             width: "100%", // Kéo dài ảnh theo chiều ngang của thẻ chứa
+                             height: "auto", // Giữ tỷ lệ gốc của ảnh
+                             maxWidth: "800px", // Giới hạn chiều rộng tối đa
+                             display: "block", // Đảm bảo ảnh được hiển thị như block
+                             margin: "0 auto"
+                            }} />
                           </Link>
                         </div>
                         <header className="post-header">
@@ -112,7 +118,7 @@ function Blog() {
       {blogList}
       <div class="clear"></div>
     </div>
-    
+
   );
 }
 

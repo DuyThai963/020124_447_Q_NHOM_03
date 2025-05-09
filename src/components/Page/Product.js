@@ -71,7 +71,7 @@ return (
   </div>
   <div className="container center" style={{ marginTop: "10%", marginLeft: "5%" }}>
   <h2 style={{ fontSize: "28px", textAlign: "left",marginLeft: "10%", marginBottom: "1%" }}>CÁC MÓN CHÍNH TẠI ĐÂY</h2>
-  <p className="desc" style={{ fontSize: "18px", textAlign: "left" }}>
+  <p className="desc" style={{ fontSize: "18px", textAlign: "left",opacity:0.5, color: "#A3A3A3"  }}>
     Được nhập khẩu từ các nước hàng đầu và chế biến bởi đầu bếp có tay nghề cực đỉnh
   </p>
 </div>
