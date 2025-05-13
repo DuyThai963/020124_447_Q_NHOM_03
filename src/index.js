@@ -1,51 +1,75 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home";
-import Room from "./components/Page/Room";
-import Booking from "./components/Page/Booking";
-import Blog from "./components/Page/Blog";
-import Product from "./components/Page/Product";
-import Facility from "./components/Page/Facility";
-import DetailRoom from "./components/Page/DetailRoom";
-import SignUp from "./components/Page/Signup";
-import Login from "./components/Page/Login";
-import DetailBlog from "./components/Page/DetailBlog";
-import ChooseRoom from "./components/Page/ChooseRoom";
-import ChooseBooking from "./components/Page/ChooseBooking";
-import Reservation from "./components/Page/Reservation";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import Header from './component/layout/Header';
+import Footer from './component/layout/Footer';
+import Home from './component/Home';
+import AboutUs from './pages/AboutUs';
+import Room from './pages/Room';
+import Booking from './pages/Booking';
+import Booking2 from './pages/Booking2';
+import Booking3 from './pages/Booking3';
+import Booking4 from './pages/Booking4';
+import Booking5 from './pages/Booking5';
+import Blog from './pages/Blog';
+import Menu from './pages/Menu';
+import RoomDetail from "./pages/detail/RoomDetail";
+import DetailBlog from "./pages/detail/DetailBlog";
+import Login from './pages/client/login';
+import Register from './pages/client/register';
+import Profile from './pages/Profile';
+import HistoryBook from './pages/HistoryBook';
 
-const root = ReactDOM.createRoot(document .getElementById("root"));
+document.body.classList.add('home', 'page-template-default', 'page', 'page-id-3720', '_masterslider', '_msp_version_3.2.2', 'hotelmaster-button-classic-style', 'header-style-2', 'hotelmaster-classic-style', 'hotelmaster-single-classic-style');
+
+function App() {
+  const location = useLocation();
+
+  // Kiểm tra nếu đường dẫn là "/login" hoặc "/register"
+  const isAuthPage = location.pathname === '/Login' || location.pathname === '/Register';
+
+  return (
+    <div className="body-wrapper float-menu gdlr-icon-light gdlr-header-solid" data-home="#">
+      {!isAuthPage && <Header />} {/* Hiển thị Header nếu không phải trang login/register */}
+      <div id="gdlr-header-substitute"></div>
+      <div className="content-wrapper">
+        <div className="gdlr-content">
+          <div className="with-sidebar-wrapper">
+            <Routes>
+              {/* Các trang có Header và Footer */}
+              <Route path="/" element={<Home />} />
+              <Route path="/AboutUs" element={<AboutUs />} />
+              <Route path="/Room" element={<Room />} />
+              <Route path="/Room-detail/:id" element={<RoomDetail />} />
+              <Route path="/Booking" element={<Booking />} />
+              <Route path="/Booking/Choose-room" element={<Booking2 />} />
+              <Route path="/Booking/Choose-service" element={<Booking3 />} />
+              <Route path="/Booking/Reservation" element={<Booking4 />} />
+              <Route path="/Booking/Confirm" element={<Booking5 />} />
+              <Route path="/Blog" element={<Blog />} />
+              <Route path="/Blog-detail/:id" element={<DetailBlog />} />
+              <Route path="/Menu" element={<Menu />} />
+              <Route path="/HistoryBooking" element={<HistoryBook />} />
+              <Route path="/Profile" element={<Profile />} />
+
+              {/* Trang login và register không có Header và Footer */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
+          </div>
+        </div>
+      </div>
+      {!isAuthPage && <Footer />} {/* Hiển thị Footer nếu không phải trang login/register */}
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Router>
-      <App>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/facility" element={<Facility />} />
-          <Route path="/room" element={<Room />} />
-          <Route path="/room/:id" element={<DetailRoom />} />
-          <Route path="/booking" element={<Booking />} />
-          <Route path="/chooseroom" element={<ChooseRoom />} />
-          <Route path="/choosebooking" element={<ChooseBooking />} />
-          <Route path="/reservation" element={<Reservation />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/blog/:id" element={<DetailBlog />} />
-          
-
-        </Routes>
-      </App>
-    </Router>
-  </React.StrictMode>
+  <BrowserRouter>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </BrowserRouter>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

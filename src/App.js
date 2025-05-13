@@ -1,22 +1,46 @@
-import "./App.css";
-import Footer from "./components/Layout/Footer";
-import Header from "./components/Layout/Header";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './component/layout/Layout';
+import AdminLayout from './component/layout/AdminLayout';
+import Home from './component/Home';
+import AboutUs from './pages/AboutUs';
+import Room from './pages/Room';
+import Booking from './pages/Booking';
+import Blog from './pages/Blog';
+import Menu from './pages/Menu';
+import Login from './pages/client/login';
+import Register from './pages/client/register';
+import Dashboard from './pages/admin/Dashboard';
+import RoomDetail from "./pages/detail/RoomDetail";
+import DetailBlog from "./pages/detail/DetailBlog";
+import NotFound from "./pages/NotFound";
 
-function App(props) {
+function App() {
   return (
-    <div
-      data-rsssl="1"
-      className="home page-template-default page page-id-3720 _masterslider _msp_version_3.2.2  hotelmaster-button-classic-style  header-style-2  hotelmaster-classic-style  hotelmaster-single-classic-style"
-    >
-      <div
-        className="body-wrapper  float-menu gdlr-icon-light gdlr-header-solid"
-        data-home="#"
-      >
-        <Header />
-        <main>{props.children}</main>
-        <Footer />
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        {/* Main Layout Routes */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="aboutus" element={<AboutUs />} />
+          <Route path="room" element={<Room />} />
+          <Route path="room-detail/:id" element={<RoomDetail />} />
+          <Route path="booking" element={<Booking />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="blog-detail/:id" element={<DetailBlog />} />
+          <Route path="menu" element={<Menu />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+        </Route>
+
+        {/* Admin Layout Routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+        </Route>
+
+        {/* Not Found Route */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 }
 
